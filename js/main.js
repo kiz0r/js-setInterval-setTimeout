@@ -35,17 +35,25 @@ function printNumbers2(from, to, interval) {
 /* Task 2 */
 // 2. *Виводити посилання через певний час після завантаження сторінки. Поки повідомлення не відображається, на його місці виводити зворотній відлік "Зачекайте хвилин:секунд".
 
-const msgBox = document.querySelector('.msgBox');
-
-const link =
-  'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg';
+function createLink(url, content) {
+  const linkTag = document.createElement('a');
+  linkTag.href = url;
+  linkTag.textContent = content;
+  return linkTag;
+}
 
 function pushLink() {
-  let timeCount = 9000 * 0.001;
+  const msgBox = document.querySelector('.msgBox');
+  const linkContent = 'Cutie Cat ♥';
+  const link =
+    'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg';
+
+  const timeCount = 15;
   let intervalId = setInterval(() => {
     msgBox.innerHTML = `Wait for ${timeCount} sec`;
     if (timeCount === 0) {
-      msgBox.innerHTML = `<a href='${link}'>Cutie Cat ♥</a>`;
+      msgBox.innerHTML = '';
+      msgBox.append(createLink(link, linkContent));
       clearInterval(intervalId);
     }
     timeCount--;
