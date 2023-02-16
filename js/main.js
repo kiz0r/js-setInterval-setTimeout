@@ -5,6 +5,12 @@
 // printNumbers using setInterval
 function printNumbers1(from, to, interval) {
   let current = from;
+  let negative = -1;
+
+  if (from > to) {
+    current *= negative;
+    to *= negative;
+  }
 
   let intervalId = setInterval(() => {
     console.log(current);
@@ -15,11 +21,18 @@ function printNumbers1(from, to, interval) {
   }, interval);
 }
 
-// printNumbers1(5, 20, 2000);
+// printNumbers1(5, 20, 500); // => from < to
+// printNumbers1(20, 5, 500); // => from > to
 
 // printNumbers using setTimeout with recursion
 function printNumbers2(from, to, interval) {
   let current = from;
+  let negative = -1;
+
+  if (from > to) {
+    current *= negative;
+    to *= negative;
+  }
 
   setTimeout(function recTimeout() {
     console.log(current);
@@ -30,7 +43,8 @@ function printNumbers2(from, to, interval) {
   }, interval);
 }
 
-// printNumbers2(5, 20, 1000);
+// printNumbers2(5, 20, 500); // => from < to
+// printNumbers2(20, 5, 500); // => from > to
 
 /* Task 2 */
 // 2. *Виводити посилання через певний час після завантаження сторінки. Поки повідомлення не відображається, на його місці виводити зворотній відлік "Зачекайте хвилин:секунд".
@@ -48,7 +62,7 @@ function createLink(url, content) {
 }
 
 function pushLink() {
-  const timeCount = 15;
+  let timeCount = 15;
   let intervalId = setInterval(() => {
     msgBox.innerHTML = `Wait for ${timeCount} sec`;
     if (timeCount === 0) {
