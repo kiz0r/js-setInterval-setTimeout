@@ -66,7 +66,7 @@ function pushLink() {
   let intervalId = setInterval(() => {
     msgBox.textContent = `Wait for ${timeCount} sec`;
     if (timeCount === 0) {
-      msgBox.innerHTML = '';
+      msgBox.textContent = '';
       msgBox.append(createLink(link, linkContent));
       clearInterval(intervalId);
     }
